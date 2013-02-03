@@ -3,8 +3,8 @@ mongoose.connect(process.env.MONGOLAB_URI || 'localhost');
 
 var userSchema = mongoose.Schema({
   name: String,
-  grade: String,
-  class: Number
+  color: String,
+  age: Number
 });
 
 var User = mongoose.model('User', userSchema);

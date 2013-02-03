@@ -14,12 +14,28 @@ exports.list = function(req, res){
 
 // creating a new user
 exports.create = function(req, res){
+
+  console.log("NEW");
   // create the user
-  var bob = new User({ name: 'bob', grade: 'A', class: 2013});
-  bob.save(function (err) {
+
+  var catName = 'test kitty';
+  var allColors = ['fire','darkphantom','nightmare','solaris','liquidmind', 'electric blue'];
+  var catColor = allColors[randomFromInterval(0,5)];
+  var catAge = randomFromInterval(1,15);
+
+  var catName = new User({ name: catName, color: catColor, age: catAge});
+  catName.save(function (err) {
     if (err)
-      return console.log("error we couldn't save bob");
+      return console.log("error we couldn't save "+ catName);
     // redirect to the list of users
-    res.redirect('/users');
+  res.redirect('/users');
+  console.log("Creating new cat " + catName);
   });
 };
+
+/* Random Number Generator
+ * Copied from: http://stackoverflow.com/questions/4959975/random-between-two-numbers-in-javascript
+ */
+function randomFromInterval(from,to) {
+  return Math.floor(Math.random()*(to-from+1)+from);
+}
