@@ -4,19 +4,20 @@ var User = require('../models/user')
 // listing all the users
 exports.list = function(req, res){
   // get the list of users
-  var users = User.find({}, function (err, docs) {
+  var users = User
+  .find({})
+  .sort( { age: -1} )
+  .exec(function (err, docs) {
     if (err)
       return console.log("error", users);
     // send it back
+
     res.render('users', {users: docs, title: 'My First app'});
   });
 };
 
 // creating a new user
 exports.create = function(req, res){
-
-  console.log("NEW");
-  // create the user
 
   var catName = 'test kitty';
   var allColors = ['fire','darkphantom','nightmare','solaris','liquidmind', 'electric blue'];
@@ -28,10 +29,16 @@ exports.create = function(req, res){
     if (err)
       return console.log("error we couldn't save "+ catName);
     // redirect to the list of users
-  res.redirect('/users');
+  res.redirect('/cats');
   console.log("Creating new cat " + catName);
   });
 };
+
+
+exports.findColor = function(req, res){
+
+}
+
 
 /* Random Number Generator
  * Copied from: http://stackoverflow.com/questions/4959975/random-between-two-numbers-in-javascript

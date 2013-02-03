@@ -30,10 +30,11 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/cats', user.list);
 // this should really be a post, but we'll cover that later
 // once we get to AJAX
-app.get('/users/new', user.create);
+app.get('/cats/new', user.create);
+//app.get('/cats/color/:color', user.findColor);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
